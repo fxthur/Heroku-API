@@ -1,4 +1,4 @@
-  var eventsRouter = require('express').Router();
+var eventsRouter = require('express').Router();
 var eventsData = require('../data/events-data');
 var _ = require('lodash');
 
