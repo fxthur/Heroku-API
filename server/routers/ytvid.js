@@ -10,14 +10,15 @@ async function getYtVid(URL) {
     await page.goto('https://keepv.id/');
 
     await page.type('#dlURL', `${URL}`);
-	await page.click('#dlBTNtext', {delay: 300});
+	await page.click('#dlBTN1', {delay: 300});
 
     await page.waitForSelector('#results > div.row > div.col-12.col-md-6.col-lg-8 > a');
     let getVideo = await page.$eval('#results > div.row > div.col-12.col-md-6.col-lg-8 > a', (element) => {
         return element.getAttribute('href');
     });
+    let titleInfo = await page.$eval('#results > h2', el => el.innerText);
 	browser.close()
-    return { getVideo }
+    return { getVideo, titleInfo }
 }
 
 youtube.get('/', async (req, res) => {
